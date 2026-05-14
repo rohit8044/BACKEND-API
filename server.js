@@ -2,17 +2,20 @@ const exp = require('express')
 const cors = require('cors')
 const router = require('./ROUTING/ROUTINGS')
 
-const port = process.env.port || 3000
+const server = exp()
 
-const server = exp();
-
-server.use('/Api',router);
-server.use(exp.json())
+// CORS FIRST
 server.use(cors())
 
+// JSON middleware
+server.use(exp.json())
 
+// Routes
+server.use('/Api', router)
 
+// Port
+const port = process.env.PORT || 3000
 
-server.listen(port,()=>{
-    console.log('Server Stated Now')
+server.listen(port, () => {
+    console.log(`Server Started on ${port}`)
 })
