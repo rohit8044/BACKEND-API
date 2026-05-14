@@ -1,11 +1,28 @@
-const express = require('express')
-const app = require('./ROUTING/ROUTINGS')
+const exp = require('express')
+const cors = require('cors')
+const router = require('./ROUTING/ROUTINGS')
 
-const serv = express()
+const port = process.env.port || 3000
 
-serv.use(express.json())
-serv.use('/',app)
+const server = exp();
 
-serv.listen(3000,()=>{
-    console.log('server started now')
+server.use('/',router);
+server.use(exp.json())
+server.use(cors())
+
+
+ server.json([
+        {
+            id: 1,
+            name: "Harry",
+            email: "harry@example.com",
+            role: "Backend Developer",
+            department: "IT",
+            salary: 65000
+        }
+    ])
+
+
+server.listen(port,()=>{
+    console.log('Server Stated Now')
 })

@@ -1,15 +1,34 @@
-const exp = require('express')
-const STUDENT = require('../MODULES/EMPLOYES')
+const express = require('express')
+const Example = require('../MODUL/MODULS');
+const { NavigatorLockAcquireTimeoutError } = require('@supabase/supabase-js/dist/index.cjs');
 
-const app = exp()
 
-app.use('/',async(request,response)=>{
+const router = express()
+
+router.get('/',async(request,reponse)=>{
     try{
-        const emplo = await STUDENT.find();
-        response.json(emplo)
+        const data = await Example.find();
+        reponse.status(200).json(data)
     }catch(error){
-        response.status(500).json({message:'internal server error'})
+        reponse.status(500).json({message: 'Enternal Error'})
     }
 })
 
-module.exports = app
+router.get('/id/:id',async(request,reponse)=>{
+    try{
+        const data = await Example.findById(request.params.id);
+        reponse.status(200).json(data)
+    }catch(error){
+        reponse.status(500).json({message: 'I ID wala Error'})
+    }
+})
+router.delete('/delete/:id',async(request , reponse)=>{
+    try{
+        const data = await Example.Delete(request.params.id);
+        reponse.status(200).json(data);
+    }catch(error){
+        reponse.status(500).json({message: 'Server Error id'})
+    }
+})
+
+module.exports = router
