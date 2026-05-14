@@ -6,21 +6,11 @@ const port = process.env.port || 3000
 
 const server = exp();
 
-server.use('/',router);
+server.use('/Api',router);
 server.use(exp.json())
 server.use(cors())
 
 
- server.json([
-        {
-            id: 1,
-            name: "Harry",
-            email: "harry@example.com",
-            role: "Backend Developer",
-            department: "IT",
-            salary: 65000
-        }
-    ])
 
 
 server.listen(port,()=>{

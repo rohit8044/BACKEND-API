@@ -5,7 +5,7 @@ const { NavigatorLockAcquireTimeoutError } = require('@supabase/supabase-js/dist
 
 const router = express()
 
-router.get('/',async(request,reponse)=>{
+router.get('/all',async(request,reponse)=>{
     try{
         const data = await Example.find();
         reponse.status(200).json(data)
