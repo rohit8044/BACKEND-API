@@ -1,13 +1,16 @@
-const router = require('./Routing/Routings')
-const expres = require('express')
-const cors = require('cors')
-const app = expres()
+const router = require('./Routing/Routings');
+const express = require('express');
+const cors = require('cors');
 
-app.use('/',router)
-app.use(expres.json())
-app.use(cors())
+const app = express();
 
-const PORT = process.env.PORT || 3000
-app.listen(PORT,()=>{
-    console.log("Server Started now")
-})
+app.use(cors());
+app.use(express.json());
+
+app.use('/', router);
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log("Server Started now");
+});
