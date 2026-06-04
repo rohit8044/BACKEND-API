@@ -15,24 +15,21 @@ router.get('/',async(request,response)=>{
 });
 
 router.post("/SendOTP", async (req, res) => {
-    try {
+  try {
+    const { phone } = req.body;
 
-        const { phone } = req.body;
+    await Student.SendOTP(phone);
 
-        if (!phone) {
-            return res.status(400).json({
-                message: "Phone number is required"
-            });
-        }
+    res.status(200).json({
+      message: "OTP Sent Successfully",
+    });
+  } catch (error) {
+    console.log(error);
 
-        const data = await Student.SendOTP(phone);
-
-        res.status(200).json({message: "OTP Sent Successfully",data});
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({message: error.message});
-    }
+    res.status(500).json({
+      message: "OTP Send Failed",
+    });
+  }
 });
 
 router.post('/selectById',async(request,response)=>{
