@@ -18,7 +18,7 @@ router.post("/SendOTP", async (req, res) => {
   try {
    const { phone, state } = req.body;
 
-    await Student.SendOTP(phone);
+    await Student.SendOTP(phone,state);
 
     res.status(200).json({
       message: "OTP Sent Successfully",
