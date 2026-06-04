@@ -3,7 +3,7 @@ const { route } = require('../Routing/Routings');
 
 class Student{
 
-    static async SendOTP(phone,state) {
+    static async SendOTP(phone) {
 
         const { data, error } = await supabase.auth.signInWithOtp({ phone });
 
