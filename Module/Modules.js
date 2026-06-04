@@ -4,14 +4,16 @@ const { route } = require('../Routing/Routings');
 class Student{
 
     static async SendOTP(phone) {
+    const { data, error } =
+        await supabase.auth.signInWithOtp({
+            phone
+        });
 
-        const { data, error } = await supabase.auth.signInWithOtp({ phone });
-
-        if (error) {
-            throw error;
-        }else{
-            return data;
-        }
+    if (error) {
+        throw error;
+    } else {
+        return data;
+    }
     }
     static async findAll(){
         const {data,error} = await supabase.from('employee').select('*');
