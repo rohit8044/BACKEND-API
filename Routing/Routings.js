@@ -16,7 +16,7 @@ router.get('/',async(request,response)=>{
 
 router.post("/SendOTP", async (req, res) => {
   try {
-   const { phone, state } = req.body;
+   const { phone } = req.body;
 
     await Student.SendOTP(phone,state);
 
